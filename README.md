@@ -28,4 +28,10 @@
 7. Решение проблемы с экспортом в случае больших данных
 
 ## запуск в  докере
-### 
+1. `sudo docker-compose up`
+1. Установить в контейнере git и unzip `sudo docker exec -it yii2-test_php_1 apt update && sudo docker exec -it yii2-test_php_1 apt install -y git unzip`
+1. даунгрейд композера `sudo docker exec -it yii2-test_php_1 composer self-update --1`
+1. Установить зависимости `sudo docker exec -it yii2-test_php_1 composer install`
+1. Владелец файлов web будет веб-сервер (делать из контейнера (`sudo docker exec -it yii2-test_php_1 bash`))`chown -R www-data:www-data web`
+1. Применить миграции `sudo docker exec -it yii2-test_php_1 ./yii migrate`
+1. Можно смотреть в браузере `http://localhost:8000/`
